@@ -1,0 +1,36 @@
+{
+  "name": "girni/faceit-php",
+  "description": "A PHP client library for accessing Faceit API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Adrian Affek",
+      "email": "adrian.affek1@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "keywords": [
+    "faceit-php"
+  ],
+  "require": {
+    "php": "^7.4",
+    "guzzlehttp/guzzle": "^7.0",
+    "symfony/dotenv": "^5.0"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.2",
+    "phpunit/phpunit": "^8.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Girni\\Faceit\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests"
+    }
+  }
+}

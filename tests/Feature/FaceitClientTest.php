@@ -54,4 +54,10 @@ class FaceitClientTest extends TestCase
 
         $this->assertInstanceOf(PlayerStats::class, $playerStats);
     }
+
+    public function test_it_can_fetch_matches_for_player()
+    {
+        $playerStats = $this->client->getMatches('d683100c-1452-47cc-af4a-b66efea476b0');
+
+    }
 }

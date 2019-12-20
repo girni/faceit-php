@@ -36,23 +36,24 @@ class Client
 
     /**
      * @param RequestInterface $request
+     * @param bool $withAuthorization
      * @return ResponseBag
      * @throws FaceitApiConnectionException
      * @throws GuzzleException
      * @throws InvalidResponseException
      */
-    public function request(RequestInterface $request): ResponseBag
+    public function request(RequestInterface $request, bool $withAuthorization = true): ResponseBag
     {
         try {
             $response = $this->client->request(
                 $request->getMethod(),
                 $request->getUrl(),
-                [
+                $withAuthorization ? [
                     'headers' => [
                         'Accept'     => 'application/json',
                         'Authorization' => "Bearer {$this->credentials->getApiKey()}"
                     ]
-                ]
+                ] : []
             );
         } catch(Exception $e) {
             throw new FaceitApiConnectionException($e->getMessage(), $e->getCode());

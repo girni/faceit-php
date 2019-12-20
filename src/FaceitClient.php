@@ -6,8 +6,10 @@ use Girni\Faceit\Api\Client;
 use Girni\Faceit\Api\ClientInterface;
 use Girni\Faceit\Model\Player;
 use Girni\Faceit\Model\PlayerStats;
+use Girni\Faceit\Parser\PlayerMatchParser;
 use Girni\Faceit\Parser\PlayerParser;
 use Girni\Faceit\Parser\PlayerStatsParser;
+use Girni\Faceit\Request\Player\PlayerMatchesRequest;
 use Girni\Faceit\Request\Player\PlayerByNicknameRequest;
 use Girni\Faceit\Request\Player\PlayerStatsRequest;
 use Girni\Faceit\Exception\FaceitApiConnectionException;
@@ -44,5 +46,11 @@ final class FaceitClient extends Client implements ClientInterface
         $parser = new PlayerStatsParser($response->getData());
 
         return $parser->getModel();
+    }
+
+    public function getMatches(string $playerId, int $limit = 30)
+    {
+        $response = $this->request(new PlayerMatchesRequest($playerId, $limit), false);
+        $parser = new PlayerMatchParser($response->getData());
     }
 }

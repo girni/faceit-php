@@ -25,6 +25,43 @@ use GuzzleHttp\Client;
 
 $client = new Faceit(new Client(), new Credentials('api-key'));
 ```
+---
+### Get Player By Nickname
+```
+$player = $client->getPlayerByNickname('neo');
+```
+#### Params
+- nickname
+
+#### Return
+`Girni\Faceit\Mode\Player` instance;
+
+---
+
+### Get Player Stats
+```
+$player = $client->getPlayerStats('d683100c-1452-47cc-af4a-b66efea476b0');
+```
+
+#### Params
+- player id
+
+#### Return
+`Girni\Faceit\Mode\PlayerStats` instance;
+
+---
+
+### Get Player Matches
+```
+$player = $client->getPlayerMatches('d683100c-1452-47cc-af4a-b66efea476b0', 30);
+```
+
+#### Params
+- player id
+- limit (default 30)
+
+#### Return
+`Girni\Faceit\Mode\PlayerMatches` instance;
 
 ---
 

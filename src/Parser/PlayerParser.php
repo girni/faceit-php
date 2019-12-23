@@ -1,10 +1,8 @@
 <?php
 
-
 namespace Girni\Faceit\Parser;
 
 use Girni\Faceit\Model\Player;
-use Girni\Faceit\Response\ResponseBag;
 
 final class PlayerParser implements ParserInterface
 {

@@ -4,7 +4,7 @@ namespace Girni\Faceit\Exception;
 
 use Exception;
 
-class InvalidResponseException extends Exception
+final class InvalidResponseException extends Exception
 {
 
 }

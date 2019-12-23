@@ -34,7 +34,7 @@ $player = $client->getPlayerByNickname('neo');
 - nickname
 
 #### Return
-`Girni\Faceit\Mode\Player` instance;
+`Girni\Faceit\Model\Player` instance;
 
 ---
 
@@ -47,7 +47,7 @@ $player = $client->getPlayerStats('d683100c-1452-47cc-af4a-b66efea476b0');
 - player id
 
 #### Return
-`Girni\Faceit\Mode\PlayerStats` instance;
+`Girni\Faceit\Model\PlayerStats` instance;
 
 ---
 
@@ -61,7 +61,7 @@ $player = $client->getPlayerMatches('d683100c-1452-47cc-af4a-b66efea476b0', 30);
 - limit (default 30)
 
 #### Return
-`Girni\Faceit\Mode\PlayerMatches` instance;
+`Girni\Faceit\Model\PlayerMatches` instance;
 
 ---
 

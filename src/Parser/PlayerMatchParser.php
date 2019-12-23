@@ -31,12 +31,19 @@ final class PlayerMatchParser implements ParserInterface
     private array $data;
 
     /**
+     * @var int|null
+     */
+    private ?int $eloGain;
+
+    /**
      * PlayerParser constructor.
      * @param array $data
+     * @param int|null $eloGain
      */
-    public function __construct(array $data)
+    public function __construct(array $data, ?int $eloGain = null)
     {
         $this->data = $data;
+        $this->eloGain = $eloGain;
     }
 
     /**
@@ -145,6 +152,11 @@ final class PlayerMatchParser implements ParserInterface
         }
 
         return (int) str_replace(',', '', $this->data[self::ELO]);
+    }
+
+    public function getEloGain(): ?int
+    {
+        return $this->eloGain;
     }
 
     /**

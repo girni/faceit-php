@@ -97,6 +97,11 @@ final class PlayerMatch
     public string $date;
 
     /**
+     * @var int|null
+     */
+    public ?int $eloGain;
+
+    /**
      * Match constructor.
      * @param string $id
      * @param bool $won
@@ -116,6 +121,7 @@ final class PlayerMatch
      * @param string $game
      * @param string $gameMode
      * @param string $date
+     * @param int|null $eloGain
      */
     public function __construct(
         string $id,
@@ -135,7 +141,8 @@ final class PlayerMatch
         string $status,
         string $game,
         string $gameMode,
-        string $date
+        string $date,
+        ?int $eloGain
     )
     {
         $this->id = $id;
@@ -156,6 +163,7 @@ final class PlayerMatch
         $this->game = $game;
         $this->gameMode = $gameMode;
         $this->date = $date;
+        $this->eloGain = $eloGain;
     }
 
     /**
@@ -182,7 +190,8 @@ final class PlayerMatch
             $parser->getStatus(),
             $parser->getGame(),
             $parser->getGameMode(),
-            $parser->getDate()
+            $parser->getDate(),
+            $parser->getEloGain()
         );
     }
 }

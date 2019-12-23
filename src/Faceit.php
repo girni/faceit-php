@@ -5,8 +5,9 @@ namespace Girni\Faceit;
 use Girni\Faceit\Api\Client;
 use Girni\Faceit\Api\ClientInterface;
 use Girni\Faceit\Model\Player;
+use Girni\Faceit\Model\PlayerMatches;
 use Girni\Faceit\Model\PlayerStats;
-use Girni\Faceit\Parser\PlayerMatchParser;
+use Girni\Faceit\Parser\PlayerMatchesParser;
 use Girni\Faceit\Parser\PlayerParser;
 use Girni\Faceit\Parser\PlayerStatsParser;
 use Girni\Faceit\Request\Player\PlayerMatchesRequest;
@@ -16,7 +17,7 @@ use Girni\Faceit\Exception\FaceitApiConnectionException;
 use Girni\Faceit\Exception\InvalidResponseException;
 use GuzzleHttp\Exception\GuzzleException;
 
-final class FaceitClient extends Client implements ClientInterface
+final class Faceit extends Client implements ClientInterface
 {
     /**
      * @param string $nickname
@@ -48,9 +49,19 @@ final class FaceitClient extends Client implements ClientInterface
         return $parser->getModel();
     }
 
-    public function getMatches(string $playerId, int $limit = 30)
+    /**
+     * @param string $playerId
+     * @param int $limit
+     * @return PlayerMatches
+     * @throws FaceitApiConnectionException
+     * @throws GuzzleException
+     * @throws InvalidResponseException
+     */
+    public function getMatches(string $playerId, int $limit = 30): PlayerMatches
     {
         $response = $this->request(new PlayerMatchesRequest($playerId, $limit), false);
-        $parser = new PlayerMatchParser($response->getData());
+        $parser = new PlayerMatchesParser($response->getData());
+
+        return $parser->getModel();
     }
 }

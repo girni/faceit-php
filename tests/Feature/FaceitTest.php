@@ -2,25 +2,26 @@
 
 namespace Tests\Feature;
 
-use Girni\Faceit\FaceitClient;
+use Girni\Faceit\Faceit;
 use Girni\Faceit\Config\Credentials;
 use Girni\Faceit\Model\Player;
+use Girni\Faceit\Model\PlayerMatch;
 use Girni\Faceit\Model\PlayerStats;
 use GuzzleHttp\Client;
 use Tests\TestCase;
 
-class FaceitClientTest extends TestCase
+class FaceitTest extends TestCase
 {
     /**
-     * @var FaceitClient
+     * @var Faceit
      */
-    private FaceitClient $client;
+    private Faceit $client;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->client = new FaceitClient(new Client(), new Credentials($_ENV['API_KEY']));
+        $this->client = new Faceit(new Client(), new Credentials($_ENV['API_KEY']));
     }
 
     /** @test */
@@ -55,9 +56,14 @@ class FaceitClientTest extends TestCase
         $this->assertInstanceOf(PlayerStats::class, $playerStats);
     }
 
+    /** @test */
     public function test_it_can_fetch_matches_for_player()
     {
-        $playerStats = $this->client->getMatches('d683100c-1452-47cc-af4a-b66efea476b0');
+        // neo
+        $playerMatches = $this->client->getMatches('d683100c-1452-47cc-af4a-b66efea476b0');
 
+        $this->assertIsArray($playerMatches->all());
+        $this->assertInstanceOf(PlayerMatch::class, $playerMatches->first());
+        $this->assertInstanceOf(PlayerMatch::class, $playerMatches->last());
     }
 }

@@ -30,4 +30,28 @@ final class PlayerMatches
             $parser->getMatches(),
         );
     }
+
+    /**
+     * @return array
+     */
+    public function all(): array
+    {
+        return $this->matches;
+    }
+
+    /**
+     * @return PlayerMatch|null
+     */
+    public function first(): ?PlayerMatch
+    {
+        return $this->matches[array_key_first($this->matches)] ?? null;
+    }
+
+    /**
+     * @return PlayerMatch|null
+     */
+    public function last(): ?PlayerMatch
+    {
+        return $this->matches[array_key_last($this->matches)] ?? null;
+    }
 }
